@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+    body {
+        background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: "Open Sans", sans-serif;
+        color: #333333;
+      }
+      
+     
+      
+      .box-form .right button {
+        float: right;
+        color: #fff;
+        font-size: 16px;
+        padding: 12px 35px;
+        border-radius: 50px;
+        display: inline-block;
+        border: 0;
+        outline: 0;
+        box-shadow: 0px 4px 20px 0px #49c628a6;
+        background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);
+      }
+      
+      label {
+        display: block;
+        position: relative;
+        margin-left: 30px;
+      }
+      
+      
+      
+      
+      label span.text-checkbox {
+        display: inline-block;
+        height: auto;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.2s linear;
+      }
+      
+      label input[type="checkbox"] {
+        display: none;
+      }
+      #button{
+        background-color: lightcoral;
+        transition: .3s ease all;
+        margin-left: 6px;
+    
+      }
+      
+      #button:hover{
+        background-color: skyblue;
+        transition: .3s ease all;
+        transform: translateY();
+    }
+    #H{
+        text-align: center;
+        background-color: lightsalmon;
+        border-radius: 40%;
+    }
+    .a{
+      border-width: 2px;
+      border-color: red;
+      
+    }
+    button{
+      font-size:larger;
+      margin-left: 800px;
+    }
+    label{
+      font-size: larger;
+      font-family: 'Times New Roman', Times, serif;
+      width: fit-content;
+    }
+    .b{
+      background-color: #fff;
+      width: fit-content;
+      font-family:'Times New Roman', Times, serif;
+      font-size: large;
+    }
+    .c{
+      background-color: brown;
+      font-size: large;
+      font-family: 'Times New Roman', Times, serif;
+      color:whitesmoke;
+      width: fit-content;
+    }
+    b{
+      color:darkred;
+      font-size: large;
+      font-family: 'Times New Roman', Times, serif;
+      font-style: bold;
+    }
+    p{
+      font-size: medium;
+      color:black;
+      font-style: bold;
+    }
+    </style>
+</head>
+
+<body>
+      
+<!-- header section starts  -->
+
+<section class="header">
+
+    <a href="home.php" class="logo">ONLINE EDUCATION </a>
+ 
+    <nav  class="navbar">
+       <a href="home.html">HOME</a>
+       <a href="about.html">ABOUT</a>
+       <a href="admission.html">ACADEMICS</a>
+       <a href="loginpage.html">LOGIN</a>
+    </nav>
+ 
+    <div id="menu-btn" class="fas fa-bars"></div>
+ 
+ </section>
+ 
+ <!-- header section ends -->
+    <form  method="post">
+        <div class="imgcontainer">
+         
+            <img src="images/a.jpg" height="150" width="250">&nbsp;
+            <img src="images/b.jpg" height="150" width="250">&nbsp;
+            <img src="images/c.jpg" height="150" width="250">&nbsp;
+            <img src="images/d.jpg" height="150" width="250">&nbsp;
+            <img src="images/e.jpg" height="150" width="250">
+        </div>
+        <h1 id="H">FILL THE DETAILS</h1>
+      <br>
+      <b>
+     <b>Name:</b>
+      <input type="text" class="a" placeholder="Enter Your Name"  name="name" required><br><br>
+      
+      <b >Gender:</b>
+      <select name="select-choice" class="a" required>
+      <option value="0" selected disabled>Select Your Gender</option>
+      <option value="male">MALE</option>
+      <option value="female">FEMALE</option>
+      <option value="other">OTHER</option>
+    </select><br><br>
+
+      <b>Contact No.:</b>
+      <input type="text" class="a" pattern="[1-9][0-9]{9}" placeholder="Enter Your Contact No." id="number" name="number" required>
+      <br><br>
+      <b>Email ID:</b>
+      <input type="text" class="a" placeholder="Enter Your E-mail" id="email" name="email" required><br><br>
+      <b> Registration Number:</b>
+      <input type="text" class="a" pattern="[2][0][B][A-Z][A-Z][1-9][0-9]{3}" placeholder="Enter Your Registration No." id="text" name="text" required>
+            <br><br>
+      <b>Password</b>
+      <input type="password" class="a" placeholder="Enter Your Password" id="password" name="password" required>
+      <br><br>
+     <b>Branch</b>
+      <input type="text" class="a" placeholder="Enter Your Branch" id="text" name="text" required>
+      <br><br>
+      <b>Date of birth:</b><br>
+      <input type="date" class="a" placeholder="Enter Your D.O.B" id="date" name="date" required>
+      <br><br>
+     <b>Select The course:</b>
+      <select name="select-choice" class="a" required>
+      <option value="0" selected disabled>Select Course</option>
+      <option value="Event1">B.tech</option>
+      <option value="Event2">BBA</option>
+      <option value="Event3">Bcom</option>
+      <option value="Event4">Geography</option>
+    </select>
+      <br><br> 
+      <p>By creating an account you agree to our <a href="https://elearningindustry.com/privacy-policy">Terms & Privacy</a>.</p>
+      <button type="button" id="button">Submit</button>
+   
+  </form>
+  
+<br><br><br>
+  <div class="c"> Creted By- <span>Ayushman, Swati, Kriti</span> | all rights reserved! </div>
+
+</section>
+</body>
+</html>

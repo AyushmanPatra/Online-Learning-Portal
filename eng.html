@@ -1,0 +1,189 @@
+<html>
+    <head>
+        <H1 id="quiz">Engeenering Quiz</H1>
+<link rel="stylesheet" href="quiz.css">
+
+<style>
+    body{
+	font-size: 10px;
+	font-family: sans-serif;
+	color: #333;
+    background-color: rgb(247, 235, 219);
+}
+.question{
+	font-weight: 500;
+}
+.answers {
+  margin-bottom: 20px;
+}
+.answers label{
+  display: block;
+}
+#submit{
+	font-family: sans-serif;
+	font-size: 20px;
+	background-color: green;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+#submit:hover{
+	background-color: black;
+    font-size: 20px;
+}
+
+
+</style>
+    </head>
+    
+   
+    <div id="quiz"></div>
+    <button id="submit">Submit Quiz</button>
+    
+    <div id="results"></div>
+    <script src="quiz.js"></script>
+    <body>
+       
+      
+       <script>
+        (function(){
+            function buildQuiz(){
+              // variable to store the HTML output
+              const output = [];
+          
+              // for each question...
+              myQuestions.forEach(
+                (currentQuestion, questionNumber) => {
+          
+                  // variable to store the list of possible answers
+                  const answers = [];
+          
+                  // and for each available answer...
+                  for(letter in currentQuestion.answers){
+          
+                    // ...add an HTML radio button
+                    answers.push(
+                      `<label>
+                        <input type="radio" name="question${questionNumber}" value="${letter}">
+                        ${letter} :
+                        ${currentQuestion.answers[letter]}
+                      </label>`
+                    );
+                  }
+          
+                  // add this question and its answers to the output
+                  output.push(
+                    `<div class="question"> ${currentQuestion.question} </div>
+                    <div class="answers"> ${answers.join('')} </div>`
+                  );
+                }
+              );
+          
+              // finally combine our output list into one string of HTML and put it on the page
+              quizContainer.innerHTML = output.join('');
+            }
+          
+            function showResults(){
+          
+              // gather answer containers from our quiz
+              const answerContainers = quizContainer.querySelectorAll('.answers');
+          
+              // keep track of user's answers
+              let numCorrect = 0;
+          
+              // for each question...
+              myQuestions.forEach( (currentQuestion, questionNumber) => {
+          
+                // find selected answer
+                const answerContainer = answerContainers[questionNumber];
+                const selector = `input[name=question${questionNumber}]:checked`;
+                const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+          
+                // if answer is correct
+                if(userAnswer === currentQuestion.correctAnswer){
+                  // add to the number of correct answers
+                  numCorrect++;
+          
+                  // color the answers green
+                  answerContainers[questionNumber].style.color = 'lightgreen';
+                }
+                // if answer is wrong or blank
+                else{
+                  // color the answers red
+                  answerContainers[questionNumber].style.color = 'red';
+                }
+              });
+          
+              // show number of correct answers out of total
+              resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+            }
+          
+            const quizContainer = document.getElementById('quiz');
+            const resultsContainer = document.getElementById('results');
+            const submitButton = document.getElementById('submit');
+            const myQuestions = [
+            {
+                question: "1. An SJF algorithm is simply a priority algorithm where the priority is the____",
+                answers: {
+                  a: "decided according to process arrival time",
+                  b: "proportional to the previous CPU burst",
+                  c: "inverse of the predicted next CPU burst"
+                },
+                correctAnswer: "c"
+              },
+              {
+                question: "2. Two processes may communicate each other via shared memory or __",
+                answers: {
+                  a: "input system",
+                  b: "message passing",
+                  c: "I/O systems"
+                },
+                correctAnswer: "b"
+              },
+              {
+                question: "3. Invoking periodically to check for deadlock is one of the way for deadlock ___",
+                answers: {
+                  a: "A Prevention",
+                  b: "Detection",
+                  c: "Deletion"
+                
+                },
+                correctAnswer: "b"
+              },
+        
+              {
+                question: "4. A process is ___ entity whereas a program is _____ entity",
+                answers: {
+                  a: "limited, unlimited",
+                  b: "passive, active",
+                  c: "active, passive"
+                
+                },
+                correctAnswer: "c"
+              },
+        
+              {
+                question: " 5. ___ allow user-level processes to request some services from the operating system which process itself is not allowed to do ",
+
+                answers: {
+                  a: "Interrupts",
+                  b: "Semaphores",
+                  c: "System calls"      
+                },
+                correctAnswer: "c"
+              }
+            ];
+          
+            // Kick things off
+            buildQuiz();
+          
+            // Event listeners
+            submitButton.addEventListener('click', showResults);
+          })();
+        </script>
+
+    </body>
+</html>

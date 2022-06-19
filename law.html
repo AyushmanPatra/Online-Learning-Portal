@@ -1,0 +1,189 @@
+<html>
+<head>
+        <center><H1>LAW QUIZ</H1></center>
+
+    </head>
+    
+    <div id="quiz"></div>
+    <button id="submit">Submit Quiz</button>
+    <link rel="stylesheet" href="style.css">
+    <div id="results"></div>
+    
+    <script>
+
+        (function(){
+    function buildQuiz(){
+      // variable to store the HTML output
+      const output = [];
+  
+      // for each question...
+      myQuestions.forEach(
+        (currentQuestion, questionNumber) => {
+  
+          // variable to store the list of possible answers
+          const answers = [];
+  
+          // and for each available answer...
+          for(letter in currentQuestion.answers){
+  
+            // ...add an HTML radio button
+            answers.push(
+              `<label>
+                <input type="radio" name="question${questionNumber}" value="${letter}">
+                ${letter} :
+                ${currentQuestion.answers[letter]}
+              </label>`
+            );
+          }
+  
+          // add this question and its answers to the output
+          output.push(
+            `<div class="question"> ${currentQuestion.question} </div>
+            <div class="answers"> ${answers.join('')} </div>`
+          );
+        }
+      );
+  
+      // finally combine our output list into one string of HTML and put it on the page
+      quizContainer.innerHTML = output.join('');
+    }
+  
+    function showResults(){
+  
+      // gather answer containers from our quiz
+      const answerContainers = quizContainer.querySelectorAll('.answers');
+  
+      // keep track of user's answers
+      let numCorrect = 0;
+  
+      // for each question...
+      myQuestions.forEach( (currentQuestion, questionNumber) => {
+  
+        // find selected answer
+        const answerContainer = answerContainers[questionNumber];
+        const selector = `input[name=question${questionNumber}]:checked`;
+        const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+  
+        // if answer is correct
+        if(userAnswer === currentQuestion.correctAnswer){
+          // add to the number of correct answers
+          numCorrect++;
+  
+          // color the answers green
+          answerContainers[questionNumber].style.color = 'lightgreen';
+        }
+        // if answer is wrong or blank
+        else{
+          // color the answers red
+          answerContainers[questionNumber].style.color = 'red';
+        }
+      });
+  
+      // show number of correct answers out of total
+      resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+    }
+  
+    const quizContainer = document.getElementById('quiz');
+    const resultsContainer = document.getElementById('results');
+    const submitButton = document.getElementById('submit');
+    const myQuestions = [
+      {
+        question: "Who was the first chief justice of India? ",
+        answers: {
+          a: "JUSTICE KANIA",
+          b: "Dr. BR AMBEDKAR",
+          c: "Dr MANMOHAN SINGH"
+        },
+        correctAnswer: "a"
+      },
+      {
+        question: "Under which article was the Finance Commission of India established??",
+        answers: {
+          a: "Article 260",
+          b: "Article 301",
+          c: "Article 280"
+        },
+        correctAnswer: "c"
+      },
+      {
+        question: "Which State is the first to enact a law on contract farming?",
+        answers: {
+          a: "Andhra Pradesh",
+          b: "Tamil Nadu",
+          c: "Telangana"
+        
+        },
+        correctAnswer: "b"
+      },
+
+      {
+        question: " Which amendment made it mandatory for the President to give his assent to the Constitutional Amendment bills?",
+        answers: {
+          a: "24th",
+          b: "54th",
+          c: "44th"
+        
+        },
+        correctAnswer: "a"
+      },
+
+      {
+        question: "  Which Article is related with Abolition of Untouchability?",
+        answers: {
+          a: "Article 19",
+          b: "Article 17",
+          c: "Article 20"      
+        },
+        correctAnswer: "b"
+      }
+    ];
+  
+    // Kick things off
+    buildQuiz();
+  
+    // Event listeners
+    submitButton.addEventListener('click', showResults);
+  })();
+    </script>
+
+    <style>
+
+body{
+	font-size: 20px;
+	font-family: sans-serif;
+	color: #333;
+    background-color:antiquewhite ;
+}
+.question{
+	font-weight: 600;
+    padding: 8px;
+}
+.answers {
+  margin-bottom: 20px;
+  padding: 5px;
+}
+.answers label{
+  display: block;
+}
+#submit{
+	font-family: sans-serif;
+	font-size: 20px;
+	background-color: #279;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin-bottom: 20px;
+    text-align: center;
+    
+}
+#submit:hover{
+	background-color: #38a;
+}
+    </style>
+
+<body>     
+
+</body>
+</html>
